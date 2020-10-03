@@ -337,7 +337,7 @@ class Compiler implements ICompiler {
       },
       context: this.options.basePath,
       externals: nodeExternals({
-        whitelist: [/\.css$/, /\?vue&type=style/]
+        allowlist: [/\.css$/, /\?vue&type=style/]
       }),
       devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
       plugins: [
@@ -355,7 +355,7 @@ class Compiler implements ICompiler {
       ],
     };
 
-    let webpackMerged = webpackMerge.smart(defaultConfig, this.options.config);
+    let webpackMerged = webpackMerge.merge(defaultConfig, this.options.config);
 
     if (typeof this.options.configCallback === 'function') {
       webpackMerged = this.options.configCallback(webpackMerged);
