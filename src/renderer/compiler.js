@@ -336,9 +336,6 @@ class Compiler implements ICompiler {
         ],
       },
       context: this.options.basePath,
-      externals: nodeExternals({
-        allowlist: [/\.css$/, /\?vue&type=style/]
-      }),
       devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
       plugins: [
         new VueLoaderPlugin(),
